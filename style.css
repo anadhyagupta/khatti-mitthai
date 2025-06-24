@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffde8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#player-turn {
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(5, 60px);
+    grid-template-rows: repeat(4, 60px);
+    gap: 5px;
+}
+
+.cell {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #e88e00;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.cell.normal-mithai {
+    background-image: url('laddoo.png');
+    /* Change path if using images/laddu.png */
+}
+
+.cell.spoiled {
+    background-image: url('moldy mitthai.png');
+    /* Change path if using images/khatti.png */
+}
+
+.cell.removed {
+    visibility: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+#result {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffe0b3;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    font-size: 26px;
+    font-weight: bold;
+    color: #b30000;
+    z-index: 1000;
+    display: none;
+    text-align: center;
+    animation: popIn 0.4s ease-out forwards;
+}
+
+@keyframes popIn {
+    0% {
+        transform: translate(-50%, -60%) scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+#result.show {
+    display: block !important;
+}
+
+#reset-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ffaa00;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+#reset-btn:hover {
+    background-color: #ff8800;
+}
+
+#grid-controls {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+#grid-controls input {
+    width: 50px;
+    padding: 4px;
+}
