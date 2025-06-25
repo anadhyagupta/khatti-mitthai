@@ -48,7 +48,7 @@ function createBoard(rows, cols) {
     turnDiv.textContent = `Player ${currentPlayer}'s Turn`;
     resultDiv.classList.remove('show');
     resultDiv.style.display = 'none';
-    resetBtn.classList.remove('hidden');
+    resetBtn.classList.add('hidden');
 }
 
 function handleClick(e) {
@@ -71,6 +71,7 @@ function handleClick(e) {
     if (row === totalRows - 1 && col === 0) {
         resultDiv.textContent = `Player ${currentPlayer} took the Khatti Mithai and loses!`;
         resultDiv.classList.add('show');
+        resetBtn.classList.remove('hidden'); // ✅ Show it now
         gameOver = true;
         return;
     }
@@ -79,14 +80,19 @@ function handleClick(e) {
     turnDiv.textContent = `Player ${currentPlayer}'s Turn`;
 }
 
+
 startBtn.addEventListener('click', () => {
     const rows = parseInt(rowInput.value);
     const cols = parseInt(colInput.value);
     if (rows >= 2 && cols >= 2) {
+        document.getElementById('setup-screen').classList.add('hidden');
+        document.getElementById('game-screen').classList.remove('hidden');
         createBoard(rows, cols);
     }
 });
 
 resetBtn.addEventListener('click', () => {
-    createBoard(totalRows, totalCols);
+    document.getElementById('game-screen').classList.add('hidden');
+    document.getElementById('setup-screen').classList.remove('hidden');
+    resetBtn.classList.add('hidden'); // ✅ Hide again for next game
 });
