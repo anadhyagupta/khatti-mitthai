@@ -59,6 +59,7 @@ function handleClick(e) {
 
     if (!board[row][col] || board[row][col].classList.contains('removed')) return;
 
+    // Remove clicked cell and all above it in same or right columns
     for (let r = 0; r <= row; r++) {
         for (let c = col; c < totalCols; c++) {
             if (board[r][c] && !board[r][c].classList.contains('removed')) {
@@ -68,18 +69,19 @@ function handleClick(e) {
         }
     }
 
+    // If player clicked on spoiled mithai
     if (row === totalRows - 1 && col === 0) {
         resultDiv.textContent = `Player ${currentPlayer} took the Khatti Mithai and loses!`;
         resultDiv.classList.add('show');
-        resetBtn.classList.remove('hidden'); // ✅ Show it now
+        resetBtn.classList.remove('hidden');
         gameOver = true;
         return;
     }
 
+    // Switch player
     currentPlayer = currentPlayer === 1 ? 2 : 1;
     turnDiv.textContent = `Player ${currentPlayer}'s Turn`;
 }
-
 
 startBtn.addEventListener('click', () => {
     const rows = parseInt(rowInput.value);
@@ -94,5 +96,24 @@ startBtn.addEventListener('click', () => {
 resetBtn.addEventListener('click', () => {
     document.getElementById('game-screen').classList.add('hidden');
     document.getElementById('setup-screen').classList.remove('hidden');
-    resetBtn.classList.add('hidden'); // ✅ Hide again for next game
+    resetBtn.classList.add('hidden');
+});
+
+// === Rules popup logic ===
+const rulesBtn = document.getElementById('rules-button');
+const rulesPopup = document.getElementById('rules-popup');
+const closeRules = document.getElementById('close-rules');
+
+rulesBtn.addEventListener('click', () => {
+    rulesPopup.classList.add('show');
+});
+
+closeRules.addEventListener('click', () => {
+    rulesPopup.classList.remove('show');
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target === rulesPopup) {
+        rulesPopup.classList.remove('show');
+    }
 });

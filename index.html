@@ -26,9 +26,25 @@
         <div id="board"></div>
         <div id="result" class="hidden"></div>
         <button id="reset-btn" class="hidden">Restart Game</button>
-        <!-- ✅ This must be here -->
     </div>
 
+    <!-- Rules Button -->
+    <div id="rules-button">❓ Rules</div>
+
+    <!-- Rules Popup -->
+    <div id="rules-popup" class="hidden">
+        <div class="popup-content">
+            <span id="close-rules">&times;</span>
+            <h2>How to Play</h2>
+            <p><strong>Objective:</strong> Avoid eating the spoiled sweet (bottom-left cell)!</p>
+            <p><strong>How to Play:</strong><br> Players take turns choosing a mithai. On selecting any mithai, all sweets to the right and above it get removed. The player forced to take the spoiled sweet loses.
+            </p>
+            <p><strong>Example:</strong> Click on a mithai at Row 2, Col 3 — all sweets in its row and above it (to the right) disappear.</p>
+            <p><strong>Note:</strong> The spoiled sweet is at the bottom-left corner (D1). Avoid it!</p>
+        </div>
+    </div>
+
+    <!-- Game Logic -->
     <script src="script.js"></script>
 </body>
 
